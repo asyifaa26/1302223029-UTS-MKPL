@@ -1,7 +1,6 @@
 package lib;
 
 public class TaxFunction {
-
 	
 	/**
 	 * Fungsi untuk menghitung jumlah pajak penghasilan pegawai yang harus dibayarkan setahun.
@@ -14,12 +13,12 @@ public class TaxFunction {
 	 * 
 	 */
 	
-	 public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
-        validateInputs(numberOfMonthWorking);
+	 public static int calculateTax(TaxData data) {
+        validateInputs(data.getNumberOfMonthWorking());
 
-        int taxRelief = getTaxRelief(isMarried, numberOfChildren);
-        int annualIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
-        int taxableIncome = annualIncome - deductible - taxRelief;
+        int taxRelief = getTaxRelief(data.isMarried(), data.getNumberOfChildren());
+        int annualIncome = (data.getMonthlySalary() + data.getOtherMonthlyIncome()) * data.getNumberOfMonthWorking();
+        int taxableIncome = annualIncome - data.getDeductible() - taxRelief;
 
         int tax = (int) Math.round(0.05 * taxableIncome);
         return Math.max(tax, 0);
