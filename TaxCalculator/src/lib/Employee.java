@@ -55,12 +55,14 @@ public class Employee {
 		int monthWorkingInYear = (currentDate.getYear() == yearJoined) ? currentDate.getMonthValue() - monthJoined : 12;
 	
 		return TaxFunction.calculateTax(
+			new TaxData(
 				salary.getMonthlySalary(),
 				otherMonthlyIncome,
 				monthWorkingInYear,
 				annualDeductible,
 				familyInfo.isSingle(),
 				familyInfo.getChildCount()
+			)
 		);
     }
 }
