@@ -11,7 +11,6 @@ public class Employee {
     private int yearJoined;
     private int monthJoined;
     private int dayJoined;
-    private int monthWorkingInYear;
 
     private EmployeePersonalInfo personalInfo;
     private EmployeeFamilyInfo familyInfo;
@@ -52,16 +51,16 @@ public class Employee {
     }
 
     public int getAnnualIncomeTax() {
-        LocalDate currentDate = LocalDate.now();
-        this.monthWorkingInYear = (currentDate.getYear() == yearJoined) ? currentDate.getMonthValue() - monthJoined : 12;
-
-        return TaxFunction.calculateTax(
-                salary.getMonthlySalary(),
-                otherMonthlyIncome,
-                monthWorkingInYear,
-                annualDeductible,
-                familyInfo.isSingle(),
-                familyInfo.getChildCount()
-        );
+		LocalDate currentDate = LocalDate.now();
+		int monthWorkingInYear = (currentDate.getYear() == yearJoined) ? currentDate.getMonthValue() - monthJoined : 12;
+	
+		return TaxFunction.calculateTax(
+				salary.getMonthlySalary(),
+				otherMonthlyIncome,
+				monthWorkingInYear,
+				annualDeductible,
+				familyInfo.isSingle(),
+				familyInfo.getChildCount()
+		);
     }
 }
