@@ -53,9 +53,7 @@ public class Employee {
 
     public int getAnnualIncomeTax() {
         LocalDate currentDate = LocalDate.now();
-        this.monthWorkingInYear = (currentDate.getYear() == yearJoined)
-                ? currentDate.getMonthValue() - monthJoined
-                : 12;
+        this.monthWorkingInYear = (currentDate.getYear() == yearJoined) ? currentDate.getMonthValue() - monthJoined : 12;
 
         return TaxFunction.calculateTax(
                 salary.getMonthlySalary(),
